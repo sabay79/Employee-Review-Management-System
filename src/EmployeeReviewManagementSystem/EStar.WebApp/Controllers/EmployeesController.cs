@@ -32,30 +32,30 @@ namespace EStar.WebApp.Controllers
             return View(employee);
         }
 
-        // GET: Employees/Create
-        public ActionResult Create()
-        {
-            ViewBag.DepartmentID = new SelectList(db.Departments, "ID", "Name");
-            return View();
-        }
+        //// GET: Employees/Create
+        //public ActionResult Create()
+        //{
+        //    ViewBag.DepartmentID = new SelectList(db.Departments, "ID", "Name");
+        //    return View();
+        //}
 
-        // POST: Employees/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Gender,Designation,DepartmentID,YearsOfExperience,Salary,City,Country,Username,Password")] Employee employee)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Employees.Add(employee);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //// POST: Employees/Create
+        //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "ID,Name,Gender,Designation,DepartmentID,YearsOfExperience,Salary,City,Country,Username,Password")] Employee employee)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Employees.Add(employee);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            ViewBag.DepartmentID = new SelectList(db.Departments, "ID", "Name", employee.DepartmentID);
-            return View(employee);
-        }
+        //    ViewBag.DepartmentID = new SelectList(db.Departments, "ID", "Name", employee.DepartmentID);
+        //    return View(employee);
+        //}
 
         // GET: Employees/Edit/5
         public ActionResult Edit(int? id)

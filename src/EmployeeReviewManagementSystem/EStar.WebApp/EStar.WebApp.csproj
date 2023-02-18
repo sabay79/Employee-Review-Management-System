@@ -201,6 +201,7 @@
     <Content Include="imgs\home.png" />
     <Content Include="imgs\logo-white.png" />
     <Content Include="imgs\logo.png" />
+    <Content Include="imgs\logo2.png" />
     <Content Include="Models\ERMSModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ERMSModel.edmx</DependentUpon>
