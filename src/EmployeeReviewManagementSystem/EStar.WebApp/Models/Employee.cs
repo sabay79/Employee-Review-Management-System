@@ -17,7 +17,6 @@ namespace EStar.WebApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
-            this.Registrations = new HashSet<Registration>();
             this.Reviews = new HashSet<Review>();
         }
     
@@ -26,10 +25,14 @@ namespace EStar.WebApp.Models
         public string Gender { get; set; }
         public string Designation { get; set; }
         public int DepartmentID { get; set; }
+        public Nullable<int> YearsOfExperience { get; set; }
+        public Nullable<int> Salary { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     
         public virtual Department Department { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Registration> Registrations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
     }

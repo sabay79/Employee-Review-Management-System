@@ -30,9 +30,7 @@ namespace EStar.WebApp.Models
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
-        public virtual DbSet<Registration> Registrations { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<User> Users { get; set; }
     }
 }

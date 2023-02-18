@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using EStar.WebApp.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using EStar.WebApp.Models;
 
 namespace EStar.WebApp.Controllers
 {
@@ -48,7 +44,7 @@ namespace EStar.WebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Gender,Designation,DepartmentID")] Employee employee)
+        public ActionResult Create([Bind(Include = "ID,Name,Gender,Designation,DepartmentID,YearsOfExperience,Salary,City,Country,Username,Password")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +78,7 @@ namespace EStar.WebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Gender,Designation,DepartmentID")] Employee employee)
+        public ActionResult Edit([Bind(Include = "ID,Name,Gender,Designation,DepartmentID,YearsOfExperience,Salary,City,Country,Username,Password")] Employee employee)
         {
             if (ModelState.IsValid)
             {

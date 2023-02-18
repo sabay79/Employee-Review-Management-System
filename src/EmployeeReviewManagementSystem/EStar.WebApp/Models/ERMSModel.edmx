@@ -36,6 +36,12 @@
           <Property Name="Gender" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Designation" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="YearsOfExperience" Type="int" />
+          <Property Name="Salary" Type="int" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="Username" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -43,14 +49,6 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Question" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Registration">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeID" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -73,14 +71,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <Association Name="FK_Employee_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
@@ -90,30 +80,6 @@
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="DepartmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Registration_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Registration">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Registration_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Registration">
-              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -183,21 +149,11 @@
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
             <End Role="Department" EntitySet="Department" />
             <End Role="Employee" EntitySet="Employee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Registration_Employee" Association="Self.FK_Registration_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="Registration" EntitySet="Registration" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Registration_User" Association="Self.FK_Registration_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Registration" EntitySet="Registration" />
           </AssociationSet>
           <AssociationSet Name="FK_Review_Answer" Association="Self.FK_Review_Answer">
             <End Role="Answer" EntitySet="Answer" />
@@ -260,8 +216,13 @@
           <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Designation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="YearsOfExperience" Type="Int32" />
+          <Property Name="Salary" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
-          <NavigationProperty Name="Registrations" Relationship="Self.FK_Registration_Employee" FromRole="Employee" ToRole="Registration" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_Employee" FromRole="Employee" ToRole="Review" />
         </EntityType>
         <EntityType Name="Question">
@@ -271,16 +232,6 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Question1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_Question" FromRole="Question" ToRole="Review" />
-        </EntityType>
-        <EntityType Name="Registration">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Registration_Employee" FromRole="Registration" ToRole="Employee" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Registration_User" FromRole="Registration" ToRole="User" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -307,15 +258,6 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Registrations" Relationship="Self.FK_Registration_User" FromRole="User" ToRole="Registration" />
         </EntityType>
         <Association Name="FK_Review_Answer">
           <End Role="Answer" Type="Self.Answer" Multiplicity="1" />
@@ -365,18 +307,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Registration_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Registration">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Review_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Review" Type="Self.Review" Multiplicity="*" />
@@ -401,28 +331,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Registration_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Registration">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="EStarDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Answers" EntityType="Self.Answer" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="Questions" EntityType="Self.Question" />
-          <EntitySet Name="Registrations" EntityType="Self.Registration" />
           <EntitySet Name="Reviews" EntityType="Self.Review" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Review_Answer" Association="Self.FK_Review_Answer">
             <End Role="Answer" EntitySet="Answers" />
             <End Role="Review" EntitySet="Reviews" />
@@ -439,10 +355,6 @@
             <End Role="Department" EntitySet="Departments" />
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
-          <AssociationSet Name="FK_Registration_Employee" Association="Self.FK_Registration_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Registration" EntitySet="Registrations" />
-          </AssociationSet>
           <AssociationSet Name="FK_Review_Employee" Association="Self.FK_Review_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="Review" EntitySet="Reviews" />
@@ -450,10 +362,6 @@
           <AssociationSet Name="FK_Review_Question" Association="Self.FK_Review_Question">
             <End Role="Question" EntitySet="Questions" />
             <End Role="Review" EntitySet="Reviews" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Registration_User" Association="Self.FK_Registration_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Registration" EntitySet="Registrations" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -495,6 +403,12 @@
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Designation" ColumnName="Designation" />
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="YearsOfExperience" ColumnName="YearsOfExperience" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -503,15 +417,6 @@
               <MappingFragment StoreEntitySet="Question">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Question1" ColumnName="Question" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Registrations">
-            <EntityTypeMapping TypeName="EStarDBModel.Registration">
-              <MappingFragment StoreEntitySet="Registration">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -535,15 +440,6 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="EStarDBModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
