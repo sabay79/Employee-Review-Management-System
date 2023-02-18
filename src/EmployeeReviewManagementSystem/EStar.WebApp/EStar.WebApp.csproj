@@ -198,6 +198,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="imgs\home.png" />
     <Content Include="imgs\logo-white.png" />
     <Content Include="imgs\logo.png" />
     <Content Include="Models\ERMSModel.Context.tt">
