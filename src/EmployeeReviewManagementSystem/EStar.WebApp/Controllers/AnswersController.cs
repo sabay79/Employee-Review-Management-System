@@ -16,21 +16,6 @@ namespace EStar.WebApp.Controllers
             return View(db.Answers.ToList());
         }
 
-        // GET: Answers/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Answer answer = db.Answers.Find(id);
-            if (answer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(answer);
-        }
-
         // GET: Answers/Create
         public ActionResult Create()
         {
@@ -87,23 +72,6 @@ namespace EStar.WebApp.Controllers
 
         // GET: Answers/Delete/5
         public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Answer answer = db.Answers.Find(id);
-            if (answer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(answer);
-        }
-
-        // POST: Answers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
         {
             Answer answer = db.Answers.Find(id);
             db.Answers.Remove(answer);
