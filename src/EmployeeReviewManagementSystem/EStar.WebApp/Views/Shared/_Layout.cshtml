@@ -28,6 +28,18 @@
                     <li>@Html.ActionLink("Answer", "Index", "Answers")</li>
                     <li>@Html.ActionLink("Review", "Index", "Reviews")</li>
                 </ul>
+                <ul class="nav navbar-nav" style="float:right">
+                    <li>
+                        @if (Session["ID"] != null)
+                        {
+                            @Html.ActionLink("SignOut", "SignOut", "Employees")
+                        }
+                        else
+                        {
+                            @Html.ActionLink("SignIn", "SignIn", "Employees")
+                        }
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

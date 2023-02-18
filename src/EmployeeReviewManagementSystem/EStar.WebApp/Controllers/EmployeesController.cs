@@ -1,7 +1,9 @@
 ﻿using EStar.WebApp.Models;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace EStar.WebApp.Controllers
@@ -114,6 +116,64 @@ namespace EStar.WebApp.Controllers
             db.Employees.Remove(employee);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: UserController/SignIn
+        public ActionResult SignIn()
+        {
+            return View();
+        }
+
+        // POST: UserController/SignIn/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SignIn(Employee model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = db.Employees
+                    .Where(x => x.Username == model.Username && x.Password == model.Password)
+                    .FirstOrDefault();
+                if (user != null)
+                {
+                    Session["ID"] = user.ID.ToString();
+                    Session["UserName"] = user.Username.ToString();
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Username or Password is Incorrect");
+                }
+            }
+            return View(model);
+    }
+
+        // GET: Employees/SignUp
+        public ActionResult SignUp()
+        {
+            ViewBag.DepartmentID = new SelectList(db.Departments, "ID", "Name");
+            return View();
+        }
+
+        // POST: Employees/SignUp
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SignUp([Bind(Include = "ID,Name,Gender,Designation,DepartmentID,YearsOfExperience,Salary,City,Country,Username,Password")] Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Employees.Add(employee);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.DepartmentID = new SelectList(db.Departments, "ID", "Name", employee.DepartmentID);
+            return View(employee);
+        }
+        public ActionResult SignOut()
+        {
+            Session.Clear();
+            return RedirectToAction(nameof(SignIn));
         }
 
         protected override void Dispose(bool disposing)
