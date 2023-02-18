@@ -16,21 +16,6 @@ namespace EStar.WebApp.Controllers
             return View(db.Departments.ToList());
         }
 
-        // GET: Departments/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Department department = db.Departments.Find(id);
-            if (department == null)
-            {
-                return HttpNotFound();
-            }
-            return View(department);
-        }
-
         // GET: Departments/Create
         public ActionResult Create()
         {

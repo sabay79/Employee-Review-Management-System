@@ -4,30 +4,32 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h3>Questions</h3>
 
-<p>
+<p style="float:right">
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
+
+<table class="table table-hover ">
+    <tr style="background-color: #337ab7; color:white">
         <th>
-            @Html.DisplayNameFor(model => model.Question1)
+            @Html.Label("Question")
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Question1)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Question1)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
