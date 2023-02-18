@@ -1,9 +1,7 @@
 ﻿using EStar.WebApp.Models;
-using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace EStar.WebApp.Controllers
@@ -129,7 +127,7 @@ namespace EStar.WebApp.Controllers
                 }
             }
             return View(model);
-    }
+        }
 
         // GET: Employees/SignUp
         public ActionResult SignUp()

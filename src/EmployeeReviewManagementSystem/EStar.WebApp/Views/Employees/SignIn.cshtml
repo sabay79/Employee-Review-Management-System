@@ -3,16 +3,13 @@
 @{
     ViewBag.Title = "SignIn";
 }
-
-<h2>SignIn</h2>
-
+<h3>SignIn</h3>
+<hr />
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Employee</h4>
-        <hr />
         <div class="form-group">
             @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -24,14 +21,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <br />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="SignIn" class="btn btn-default" />
+                <input type="submit" value="SignIn" class="btn btn-primary" />
                 <br />
                 <br />
                 <!--Sign Up-->
@@ -44,9 +41,6 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
