@@ -207,6 +207,7 @@
       <DependentUpon>ERMSModel.edmx</DependentUpon>
       <LastGenOutput>ERMSModel.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\ERMSModel.edmx.sql" />
     <Content Include="Models\ERMSModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ERMSModel.edmx</DependentUpon>
