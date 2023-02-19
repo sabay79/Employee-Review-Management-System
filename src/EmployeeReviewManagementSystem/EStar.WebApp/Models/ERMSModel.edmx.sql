@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/19/2023 08:30:35
--- Generated from EDMX file: C:\Users\Saba\source\repos\sabay79\Employee-Review-Management-System\src\EmployeeReviewManagementSystem\EStar.WebApp\Models\ERMSModel.edmx
+-- Date Created: 02/19/2023 14:49:13
+-- Generated from EDMX file: C:\Users\yashfsab\source\repos\sabay79\Employee-Review-Management-System\src\EmployeeReviewManagementSystem\EStar.WebApp\Models\ERMSModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,46 +17,46 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_Employee_Department]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Employee] DROP CONSTRAINT [FK_Employee_Department];
-GO
 IF OBJECT_ID(N'[dbo].[FK_Review_Answer]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Review] DROP CONSTRAINT [FK_Review_Answer];
+    ALTER TABLE [dbo].[Reviews] DROP CONSTRAINT [FK_Review_Answer];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Review_Category]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Review] DROP CONSTRAINT [FK_Review_Category];
+    ALTER TABLE [dbo].[Reviews] DROP CONSTRAINT [FK_Review_Category];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Employee_Department]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Employees] DROP CONSTRAINT [FK_Employee_Department];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Review_Department]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Review] DROP CONSTRAINT [FK_Review_Department];
+    ALTER TABLE [dbo].[Reviews] DROP CONSTRAINT [FK_Review_Department];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Review_Employee]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Review] DROP CONSTRAINT [FK_Review_Employee];
+    ALTER TABLE [dbo].[Reviews] DROP CONSTRAINT [FK_Review_Employee];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Review_Question]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Review] DROP CONSTRAINT [FK_Review_Question];
+    ALTER TABLE [dbo].[Reviews] DROP CONSTRAINT [FK_Review_Question];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Answer]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Answer];
+IF OBJECT_ID(N'[dbo].[Answers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Answers];
 GO
-IF OBJECT_ID(N'[dbo].[Category]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Category];
+IF OBJECT_ID(N'[dbo].[Categories]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Categories];
 GO
-IF OBJECT_ID(N'[dbo].[Department]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Department];
+IF OBJECT_ID(N'[dbo].[Departments]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Departments];
 GO
-IF OBJECT_ID(N'[dbo].[Employee]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Employee];
+IF OBJECT_ID(N'[dbo].[Employees]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Employees];
 GO
-IF OBJECT_ID(N'[dbo].[Question]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Question];
+IF OBJECT_ID(N'[dbo].[Questions]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Questions];
 GO
-IF OBJECT_ID(N'[dbo].[Review]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Review];
+IF OBJECT_ID(N'[dbo].[Reviews]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Reviews];
 GO
 IF OBJECT_ID(N'[dbo].[sysdiagrams]', 'U') IS NOT NULL
     DROP TABLE [dbo].[sysdiagrams];
