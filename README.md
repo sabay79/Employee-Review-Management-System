@@ -40,4 +40,5 @@ Employee Reviews Management System
     CategoryID 
     QuestionID
     AnswerID
-    - Calculates Department & Employee Review Score
+    
+    Calculates Department & Employee Review Score
