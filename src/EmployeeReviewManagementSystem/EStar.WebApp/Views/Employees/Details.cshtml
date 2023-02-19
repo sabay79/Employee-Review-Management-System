@@ -6,23 +6,47 @@
 
 <br />
 <div>
-    <h5>Employee Rating</h5>
-    <hr />
     <div class="row">
-        <div class="col-md-1 mb-4">
-            <div class="form-group">
-                <input class="form-control text-center" style="font-size:45px" value="@ViewBag.EmployeeRating" readonly />
-                <label>Obt.</label>
+        <div class="col-md-6">
+            <div class="row">
+                <h5>Employee Rating</h5>
+                <hr />
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="form-group">
+                        <input class="form-control text-center" style="font-size:45px" value="@ViewBag.EmployeeRating" readonly />
+                        <label>Obt.</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="form-group">
+                        <input class="form-control text-center" style="font-size:45px" value="@ViewBag.EmployeeHighestRating" readonly />
+                        <label>Total</label>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-1 mb-4">
-            <div class="form-group">
-                <input class="form-control text-center" style="font-size:45px" value="@ViewBag.HighestRating" readonly />
-                <label>Total</label>
+        <div class="col-md-6">
+            <div class="row">
+                <h5>Department Rating</h5>
+                <hr />
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="form-group">
+                        <input class="form-control text-center" style="font-size:45px" value="@ViewBag.DepartmentRating" readonly />
+                        <label>Obt.</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="form-group">
+                        <input class="form-control text-center" style="font-size:45px" value="@ViewBag.DepartmenteHighestRating" readonly />
+                        <label>Total</label>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-5 mb-4"></div>
-        <div class="col-md-5 mb-4"></div>
     </div>
 
     <h5>Employee Details</h5>

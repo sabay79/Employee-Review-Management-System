@@ -20,8 +20,14 @@ namespace EStar.WebApp.Controllers
         // GET: Employees/Details/5
         public ActionResult Details(int id)
         {
-            ViewBag.HighestRating = TotalScore(id);
+            // Employee Rating
+            ViewBag.EmployeeHighestRating = EmployeeTotalScore(id);
             ViewBag.EmployeeRating = EmployeeScore(id);
+
+            // Department Rating
+            ViewBag.DepartmenteHighestRating = DepartmentTotalScore(id);
+            ViewBag.DepartmentRating = DepartmentScore(id);
+
             Employee employee = db.Employees.Find(id);
             if (employee == null)
             {
@@ -154,9 +160,9 @@ namespace EStar.WebApp.Controllers
             Session.Clear();
             return RedirectToAction(nameof(SignIn));
         }
-        public int TotalScore(int employeeID)
+        public int EmployeeTotalScore(int employeeID)
         {
-            var totalScore = 2*(db.Reviews
+            var totalScore = 2 * (db.Reviews
                 .Where(x => x.EmployeeID == employeeID)
                 .Count());
             return totalScore;
@@ -164,15 +170,30 @@ namespace EStar.WebApp.Controllers
         public int EmployeeScore(int employeeID)
         {
             var answerScore = db.Reviews
-                .Where(x=>x.EmployeeID== employeeID)
+                .Where(x => x.EmployeeID == employeeID)
                 .Select(x => x.Answer.Score)
                 .Sum();
 
             return answerScore;
         }
+        public int DepartmentTotalScore(int employeeID)
+        {
+            var employee = db.Employees.Where(x => x.ID == employeeID).FirstOrDefault();
+            var totalScore = 2 * (db.Reviews
+                .Where(x => x.DepartmentID == employee.DepartmentID)
+                .Count());
+            return totalScore;
+        }
 
-
-
+        public int DepartmentScore(int employeeID)
+        {
+            var employee = db.Employees.Where(x => x.ID == employeeID).FirstOrDefault();
+            var answerScore = db.Reviews
+                .Where(x => x.DepartmentID == employee.DepartmentID)
+                .Select(x => x.Answer.Score)
+                .Sum();
+            return answerScore;
+        }
 
 
         protected override void Dispose(bool disposing)
