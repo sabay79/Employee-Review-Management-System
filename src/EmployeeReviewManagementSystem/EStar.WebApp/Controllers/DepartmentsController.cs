@@ -79,6 +79,22 @@ namespace EStar.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
+        //public int TotalScore(int departmentID)
+        //{
+        //    var totalScore = 2 * (db.Reviews
+        //        .Where(x => x.DepartmentID == departmentID)
+        //        .Count());
+        //    return totalScore;
+        //}
+        //public int DepartmentScore(int departmentID)
+        //{
+        //    var answerScore = db.Reviews
+        //        .Where(x => x.DepartmentID == departmentID)
+        //        .Select(x => x.Answer.Score)
+        //        .Sum();
+        //    return answerScore;
+        //}
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -18,12 +18,10 @@ namespace EStar.WebApp.Controllers
         }
 
         // GET: Employees/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            ViewBag.HighestRating = TotalScore(id);
+            ViewBag.EmployeeRating = EmployeeScore(id);
             Employee employee = db.Employees.Find(id);
             if (employee == null)
             {
@@ -156,6 +154,26 @@ namespace EStar.WebApp.Controllers
             Session.Clear();
             return RedirectToAction(nameof(SignIn));
         }
+        public int TotalScore(int employeeID)
+        {
+            var totalScore = 2*(db.Reviews
+                .Where(x => x.EmployeeID == employeeID)
+                .Count());
+            return totalScore;
+        }
+        public int EmployeeScore(int employeeID)
+        {
+            var answerScore = db.Reviews
+                .Where(x=>x.EmployeeID== employeeID)
+                .Select(x => x.Answer.Score)
+                .Sum();
+
+            return answerScore;
+        }
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {
